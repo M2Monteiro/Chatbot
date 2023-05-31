@@ -28,59 +28,69 @@ class _ChatScreenState extends State<ChatScreen> {
           onTap: () {
             FocusManager.instance.primaryFocus?.unfocus();
           },
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Stack(
-              children: [
-                const QuestionBodyWidget(),
-                // InfoBodyWidget(),
-                Positioned(
-                  width: 600,
-                  bottom: 0,
-                  child: Container(
-                    width: 600,
-                    height: 56,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(30),
-                    ),
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              const SingleChildScrollView(
+                child: Column(
+                  children: [
+                    QuestionBodyWidget(),
+                    QuestionBodyWidget(),
+                    QuestionBodyWidget(),
+                    // InfoBodyWidget(),
+                  ],
+                ),
+              ),
+              Positioned(
+                bottom: 0,
+                child: Container(
+                  width: MediaQuery.of(context).size.width * 0.92,
+                  height: 56,
+                  margin: const EdgeInsets.only(bottom: 22),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 18),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         const Expanded(
                           child: TextField(
                             decoration: InputDecoration(
+                              hintText: 'Write your message',
                               border: InputBorder.none,
-                              contentPadding: EdgeInsets.only(left: 12),
-                              hintText: 'Hello chatGPT, how are you today?',
                               hintStyle: TextStyle(
                                 color: Colors.blue,
                               ),
                             ),
                           ),
                         ),
-                        Container(
-                          margin: const EdgeInsets.only(right: 15),
-                          child: const Row(
-                            children: [
-                              Icon(
+                        Row(
+                          children: [
+                            IconButton(
+                              onPressed: () {},
+                              icon: Icon(
                                 Icons.mic,
-                                color: Colors.grey,
+                                color: Colors.grey[600],
                               ),
-                              SizedBox(width: 10),
-                              Icon(
+                            ),
+                            const SizedBox(width: 8),
+                            IconButton(
+                              onPressed: () {},
+                              icon: const Icon(
                                 Icons.send_rounded,
                                 color: Colors.blue,
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

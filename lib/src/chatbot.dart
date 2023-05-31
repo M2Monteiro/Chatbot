@@ -14,12 +14,13 @@ class ChatBot extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
       ),
-      initialRoute: '/chat',
-      routes: {
-        '/': (context) => const InitialScreen(),
-        '/tutorial': (context) => const TutorialScreen(),
-        '/chat': (context) => const ChatScreen(),
-      },
+      // initialRoute: '/chat',
+      home: const ChatScreen(),
+      // routes: {
+      //   '/': (context) => const InitialScreen(),
+      //   '/tutorial': (context) => const TutorialScreen(),
+      //   '/chat': (context) => const ChatScreen(),
+      // },
     );
   }
 }

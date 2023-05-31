@@ -1,3 +1,4 @@
+import 'package:chatbot/src/screen/chat/widget_custom/text_chat_widget.dart';
 import 'package:chatbot/src/themes/images.dart';
 import 'package:flutter/material.dart';
 
@@ -11,48 +12,34 @@ class QuestionBodyWidget extends StatefulWidget {
 class _QuestionBodyWidgetState extends State<QuestionBodyWidget> {
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Positioned(
-          top: 0,
-          right: 0,
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 18),
-            decoration: const BoxDecoration(
-              color: Colors.blue,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(30),
-                bottomLeft: Radius.circular(30),
-                bottomRight: Radius.circular(30),
-              ),
-            ),
-            child: const Text(
-              'Hello chatGPT, how are you today?',
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.w700,
-                fontSize: 14,
-              ),
-            ),
+    return Padding(
+      padding: const EdgeInsets.only(
+        top: 8.0,
+        left: 12.0,
+        right: 12.0,
+        bottom: 0.0,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          const TextChatWidget(
+            text: 'Hello chatGPT, how are you today?',
           ),
-        ),
-        Positioned(
-          top: 70,
-          left: 0,
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.baseline,
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Container(
                 width: 30,
                 height: 30,
+                margin: const EdgeInsets.only(right: 10),
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
-                      spreadRadius: 0.5,
+                      color: Colors.grey,
+                      spreadRadius: 1,
                       blurRadius: 30,
-                      offset: const Offset(1, 3), // changes position of shadow
+                      offset: Offset(1, 2),
                     )
                   ],
                   borderRadius: BorderRadius.circular(20),
@@ -62,29 +49,19 @@ class _QuestionBodyWidgetState extends State<QuestionBodyWidget> {
                   AppImagens.mascotMini,
                 ),
               ),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 18),
-                decoration: const BoxDecoration(
-                  color: Colors.blue,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(30),
-                    topRight: Radius.circular(30),
-                    bottomRight: Radius.circular(30),
-                  ),
-                ),
-                child: const Text(
-                  'Hello chatGPT, how are you today?',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w700,
-                    fontSize: 14,
-                  ),
-                ),
-              )
+              const TextChatWidget(
+                text:
+                    'There are many programming languages ​​in the market that are used in designing and building websites, various applications and other tasks. All these languages ​​are popular in their place and in the way they are used, and many programmers learn and use them.',
+                fontWeight: FontWeight.w400,
+                background: Color(0xFFE2DEDE),
+                textColor: Color(0xFF656565),
+                topRight: Radius.circular(30),
+                bottomLeft: Radius.circular(0),
+              ),
             ],
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
