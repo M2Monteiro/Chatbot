@@ -1,6 +1,4 @@
 import 'package:chatbot/src/screen/chat/chat_screen.dart';
-import 'package:chatbot/src/screen/initial/initial_screen.dart';
-import 'package:chatbot/src/screen/tutorial/tutorial_screen.dart';
 import 'package:flutter/material.dart';
 
 class ChatBot extends StatelessWidget {

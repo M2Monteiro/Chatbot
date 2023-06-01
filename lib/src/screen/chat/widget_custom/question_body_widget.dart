@@ -3,7 +3,11 @@ import 'package:chatbot/src/themes/images.dart';
 import 'package:flutter/material.dart';
 
 class QuestionBodyWidget extends StatefulWidget {
-  const QuestionBodyWidget({super.key});
+  final String userQuestion;
+  const QuestionBodyWidget({
+    super.key,
+    required this.userQuestion,
+  });
 
   @override
   State<QuestionBodyWidget> createState() => _QuestionBodyWidgetState();
@@ -12,7 +16,8 @@ class QuestionBodyWidget extends StatefulWidget {
 class _QuestionBodyWidgetState extends State<QuestionBodyWidget> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return Container(
+      height: MediaQuery.of(context).size.height,
       padding: const EdgeInsets.only(
         top: 8.0,
         left: 12.0,
@@ -22,8 +27,8 @@ class _QuestionBodyWidgetState extends State<QuestionBodyWidget> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          const TextChatWidget(
-            text: 'Hello chatGPT, how are you today?',
+          TextChatWidget(
+            text: widget.userQuestion,
           ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.end,
