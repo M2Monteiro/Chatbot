@@ -1,6 +1,9 @@
-import 'package:chatbot/src/screen/chat/widget_custom/appbar_title_widget.dart';
-import 'package:chatbot/src/screen/chat/widget_custom/info_body_widget.dart';
-import 'package:chatbot/src/screen/chat/widget_custom/question_body_widget.dart';
+import 'package:chatbot/src/model/message_model.dart';
+import 'package:chatbot/src/screen/chat/components/info_body_widget.dart';
+import 'package:chatbot/src/screen/chat/components/input_text_widget.dart';
+import 'package:chatbot/src/screen/global_widget/custom_appbar_global_widget.dart';
+import 'package:chatbot/src/screen/chat/components/chat_message_widget.dart';
+import 'package:chatbot/src/screen/chat/components/user_message_widget.dart';
 
 import 'package:flutter/material.dart';
 
@@ -12,8 +15,9 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-  bool isQuestion = false;
-  final TextEditingController _userQuestion = TextEditingController();
+  bool _visible = false;
+  final List<MessageModel> _messages = <MessageModel>[];
+  final TextEditingController _userMessage = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +26,7 @@ class _ChatScreenState extends State<ChatScreen> {
       appBar: AppBar(
         surfaceTintColor: Colors.transparent,
         elevation: 2,
-        title: const AppBarTitleWidget(),
+        title: const CustomAppBarGlobalWidget(),
       ),
       body: SafeArea(
         child: GestureDetector(
@@ -32,73 +36,78 @@ class _ChatScreenState extends State<ChatScreen> {
           child: Stack(
             alignment: Alignment.center,
             children: [
-              SingleChildScrollView(
-                child: Column(
-                  children: [
-                    isQuestion
-                        ? QuestionBodyWidget(
-                            userQuestion: _userQuestion.text,
-                          )
-                        : const InfoBodyWidget(),
-                  ],
+              Visibility(
+                visible: _visible,
+                replacement: const InfoBodyWidget(),
+                child: ListView.builder(
+                  padding: const EdgeInsets.only(
+                    top: 8.0,
+                    left: 12.0,
+                    right: 12.0,
+                    bottom: 0.0,
+                  ),
+                  itemCount: _messages.length,
+                  itemBuilder: (_, i) {
+                    return Align(
+                      alignment: _messages[i].messageType == 'chat' ? Alignment.centerLeft : Alignment.centerRight,
+                      child: _messages[i].messageType == 'chat'
+                          ? ChatMessageWidget(
+                              message: _messages[i].message,
+                            )
+                          : UserMessageWidget(
+                              message: _messages[i].message,
+                            ),
+                    );
+                  },
                 ),
               ),
-              Positioned(
-                bottom: 0,
-                child: Container(
-                  width: MediaQuery.of(context).size.width * 0.92,
-                  height: 56,
-                  margin: const EdgeInsets.only(bottom: 22),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 18),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: TextField(
-                            controller: _userQuestion,
-                            decoration: const InputDecoration(
-                              hintText: 'Write your message',
-                              border: InputBorder.none,
-                              hintStyle: TextStyle(
-                                color: Colors.blue,
-                              ),
-                            ),
-                          ),
+              InputTextWidget(
+                controller: _userMessage,
+                sendButton: () {
+                  setState(
+                    () {
+                      _visible = true;
+                      _messages.add(
+                        MessageModel(
+                          message: _userMessage.text,
+                          messageType: 'user',
                         ),
-                        Row(
-                          children: [
-                            IconButton(
-                              onPressed: () {
-                                setState(() {
-                                  isQuestion = false;
-                                });
-                              },
-                              icon: Icon(
-                                Icons.mic,
-                                color: Colors.grey[600],
-                              ),
-                            ),
-                            IconButton(
-                              onPressed: () {
-                                setState(() {
-                                  isQuestion = true;
-                                });
-                              },
-                              icon: const Icon(
-                                Icons.send_rounded,
-                                color: Colors.blue,
-                              ),
-                            ),
-                          ],
+                      );
+
+                      _userMessage.clear();
+
+                      _messages.add(
+                        MessageModel(
+                          message: 'IA RESPONSE',
+                          messageType: 'chat',
                         ),
-                      ],
-                    ),
-                  ),
-                ),
+                      );
+                    },
+                  );
+                },
+                voiceButton: () {},
+                onSubmitted: (String text) {
+                  setState(
+                    () {
+                      _visible = true;
+                      _messages.add(
+                        MessageModel(
+                          message: text,
+                          messageType: 'user',
+                        ),
+                      );
+
+                      _userMessage.clear();
+
+                      _messages.add(
+                        MessageModel(
+                          message: 'IA RESPONSE',
+                          messageType: 'chat',
+                        ),
+                      );
+                    },
+                  );
+                },
               ),
             ],
           ),
