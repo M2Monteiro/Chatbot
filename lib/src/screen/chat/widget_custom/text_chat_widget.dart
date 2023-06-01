@@ -21,7 +21,9 @@ class TextChatWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 280,
+      constraints: const BoxConstraints(
+        maxWidth: 280,
+      ),
       margin: const EdgeInsets.symmetric(vertical: 8),
       padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 18),
       decoration: BoxDecoration(
