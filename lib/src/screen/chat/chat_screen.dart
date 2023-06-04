@@ -1,4 +1,5 @@
-import 'package:chatbot/src/model/message_model.dart';
+import 'package:chatbot/src/data/repository/api_repository.dart';
+import 'package:chatbot/src/screen/chat/chat_controlller.dart';
 import 'package:chatbot/src/screen/chat/components/info_body_widget.dart';
 import 'package:chatbot/src/screen/chat/components/input_text_widget.dart';
 import 'package:chatbot/src/screen/global_widget/custom_appbar_global_widget.dart';
@@ -15,9 +16,10 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-  bool _visible = false;
-  final List<MessageModel> _messages = <MessageModel>[];
   final TextEditingController _userMessage = TextEditingController();
+  final ChatController _controller = ChatController();
+
+  final ApiRepository repository = ApiRepository();
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +39,7 @@ class _ChatScreenState extends State<ChatScreen> {
             alignment: Alignment.center,
             children: [
               Visibility(
-                visible: _visible,
+                visible: _controller.visible,
                 replacement: const InfoBodyWidget(),
                 child: ListView.builder(
                   padding: const EdgeInsets.only(
@@ -46,16 +48,16 @@ class _ChatScreenState extends State<ChatScreen> {
                     right: 12.0,
                     bottom: 0.0,
                   ),
-                  itemCount: _messages.length,
+                  itemCount: _controller.messages.length,
                   itemBuilder: (_, i) {
                     return Align(
-                      alignment: _messages[i].messageType == 'chat' ? Alignment.centerLeft : Alignment.centerRight,
-                      child: _messages[i].messageType == 'chat'
+                      alignment: _controller.messages[i].messageType == 'assistant' ? Alignment.centerLeft : Alignment.centerRight,
+                      child: _controller.messages[i].messageType == 'assistant'
                           ? ChatMessageWidget(
-                              message: _messages[i].message,
+                              message: _controller.messages[i].message,
                             )
                           : UserMessageWidget(
-                              message: _messages[i].message,
+                              message: _controller.messages[i].message,
                             ),
                     );
                   },
@@ -66,48 +68,12 @@ class _ChatScreenState extends State<ChatScreen> {
                 sendButton: () {
                   setState(
                     () {
-                      _visible = true;
-                      _messages.add(
-                        MessageModel(
-                          message: _userMessage.text,
-                          messageType: 'user',
-                        ),
-                      );
-
-                      _userMessage.clear();
-
-                      _messages.add(
-                        MessageModel(
-                          message: 'IA RESPONSE',
-                          messageType: 'chat',
-                        ),
-                      );
+                      _controller.sendMessage(_userMessage.text);
                     },
                   );
                 },
                 voiceButton: () {},
-                onSubmitted: (String text) {
-                  setState(
-                    () {
-                      _visible = true;
-                      _messages.add(
-                        MessageModel(
-                          message: text,
-                          messageType: 'user',
-                        ),
-                      );
-
-                      _userMessage.clear();
-
-                      _messages.add(
-                        MessageModel(
-                          message: 'IA RESPONSE',
-                          messageType: 'chat',
-                        ),
-                      );
-                    },
-                  );
-                },
+                onSubmitted: (String text) {},
               ),
             ],
           ),
