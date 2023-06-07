@@ -1,14 +1,15 @@
 import 'dart:convert';
+import 'package:chatbot/src/data/model/response_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 abstract class IHttpClient {
-  post({required String message});
+  Future<ResponseModel> post({required String message});
 }
 
 class ApiRepository implements IHttpClient {
   @override
-  Future post({required String message}) async {
+  Future<ResponseModel> post({required String message}) async {
     final String token = dotenv.env['TOKEN']!;
     const String url = 'https://api.openai.com/v1/chat/completions';
 
@@ -36,9 +37,9 @@ class ApiRepository implements IHttpClient {
         headers: headers,
       );
 
-      return jsonDecode(resp.body);
+      return ResponseModel.fromJson(jsonDecode(utf8.decode(resp.bodyBytes)));
     } catch (e) {
-      return 'Não foi possivel responder sua pergunta!';
+      return ResponseModel();
     }
   }
 }

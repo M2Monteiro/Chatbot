@@ -1,14 +1,16 @@
+import 'package:chatbot/src/utils/message_type.dart';
+
 class MessageModel {
   String message;
-  String messageType;
+  MessageType type;
 
   MessageModel({
     required this.message,
-    required this.messageType,
+    required this.type,
   });
 
   @override
   String toString() {
-    return 'ChatMessageModel(message: $message, messageType: $messageType)';
+    return 'ChatMessageModel(message: $message, type: $type)';
   }
 }

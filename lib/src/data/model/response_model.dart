@@ -36,6 +36,11 @@ class ResponseModel {
     }
     return data;
   }
+
+  @override
+  String toString() {
+    return 'ResponseModel(choice: $choices)';
+  }
 }
 
 class Usage {
@@ -82,6 +87,11 @@ class Choices {
     data['index'] = index;
     return data;
   }
+
+  @override
+  String toString() {
+    return 'Choices(message: $message)';
+  }
 }
 
 class Message {
@@ -100,5 +110,10 @@ class Message {
     data['role'] = role;
     data['content'] = content;
     return data;
+  }
+
+  @override
+  String toString() {
+    return 'Message(content: $content)';
   }
 }
