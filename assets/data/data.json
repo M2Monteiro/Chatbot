@@ -1,0 +1,21 @@
+{
+  "id": "chatcmpl-7PJclb5RClENpwbeiwFrXQBmhUnRp",
+  "object": "chat.completion",
+  "created": 1686267991,
+  "model": "gpt-3.5-turbo-0301",
+  "usage": {
+    "prompt_tokens": 14,
+    "completion_tokens": 13,
+    "total_tokens": 27
+  },
+  "choices": [
+    {
+      "message": {
+        "role": "assistant",
+        "content": "Olá! Estou bem, obrigado. E você?"
+      },
+      "finish_reason": "stop",
+      "index": 0
+    }
+  ]
+}

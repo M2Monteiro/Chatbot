@@ -1,1 +1,1 @@
-enum MessageType { userType, assistantType }
+enum MessageType { userType, assistantType, loadingType }

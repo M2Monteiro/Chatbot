@@ -1,10 +1,11 @@
+import 'package:chatbot/src/widgets/custom_text_widget.dart';
 import 'package:flutter/material.dart';
 
-class InfoTextGlobalWidget extends StatelessWidget {
+class InfoTextComponent extends StatelessWidget {
   final String text;
   final EdgeInsetsGeometry? margin;
 
-  const InfoTextGlobalWidget({
+  const InfoTextComponent({
     super.key,
     required this.text,
     this.margin = const EdgeInsets.only(bottom: 8),
@@ -21,7 +22,7 @@ class InfoTextGlobalWidget extends StatelessWidget {
         color: Colors.grey[200],
         borderRadius: BorderRadius.circular(30),
       ),
-      child: Text(text),
+      child: CustomTextWidget(text: text),
     );
   }
 }

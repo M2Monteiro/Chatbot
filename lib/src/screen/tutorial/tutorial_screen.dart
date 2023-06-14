@@ -1,4 +1,5 @@
 import 'package:chatbot/src/themes/images.dart';
+import 'package:chatbot/src/widgets/custom_text_widget.dart';
 import 'package:flutter/material.dart';
 
 class TutorialScreen extends StatelessWidget {
@@ -16,9 +17,9 @@ class TutorialScreen extends StatelessWidget {
                 top: 30,
                 bottom: 20,
               ),
-              child: const Text(
-                'You AI Assistant',
-                style: TextStyle(
+              child: const CustomTextWidget(
+                text: 'You AI Assistant',
+                textStyle: TextStyle(
                   color: Colors.blue,
                   fontWeight: FontWeight.bold,
                   fontSize: 23,
@@ -27,13 +28,13 @@ class TutorialScreen extends StatelessWidget {
             ),
             const SizedBox(
               width: 250,
-              child: Text(
-                'Using this software, you can ask you questions and receive articles using artificial intelligence assistant',
+              child: CustomTextWidget(
+                text: 'Using this software, you can ask you questions and receive articles using artificial intelligence assistant',
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                textStyle: TextStyle(
                   color: Color(0xFF757575),
                   fontSize: 15,
-                  fontWeight: FontWeight.w500,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),
@@ -63,9 +64,9 @@ class TutorialScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Center(
-                      child: Text(
-                        'Continue',
-                        style: TextStyle(
+                      child: CustomTextWidget(
+                        text: 'Continue',
+                        textStyle: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.w700,
                           fontSize: 19,
@@ -82,10 +83,3 @@ class TutorialScreen extends StatelessWidget {
     );
   }
 }
-
-/**
- *   // Navigator.of(context).pushNamedAndRemoveUntil(
-                  //   '/chat',
-                  //   (route) => false,
-                  // );
- */

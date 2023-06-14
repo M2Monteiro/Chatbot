@@ -1,17 +1,21 @@
 import 'package:chatbot/src/themes/images.dart';
 import 'package:flutter/material.dart';
 
-class CustomAppBarGlobalWidget extends StatelessWidget {
-  const CustomAppBarGlobalWidget({super.key});
+class CustomAppBarComponent extends StatelessWidget {
+  const CustomAppBarComponent({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Image.asset(AppImagens.mascot),
-        Container(
-          margin: const EdgeInsets.only(left: 20),
-          child: Column(
+    return AppBar(
+      title: Row(
+        children: [
+          Container(
+            margin: const EdgeInsets.only(
+              right: 10,
+            ),
+            child: Image.asset(AppImagens.mascot),
+          ),
+          Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
@@ -44,8 +48,9 @@ class CustomAppBarGlobalWidget extends StatelessWidget {
               ),
             ],
           ),
-        ),
-      ],
+        ],
+      ),
+      elevation: 2,
     );
   }
 }

@@ -1,9 +1,9 @@
-import 'package:chatbot/src/screen/global_widget/info_text_global_widget.dart';
+import 'package:chatbot/src/components/chat_screen/info_text_component.dart';
 import 'package:chatbot/src/themes/images.dart';
 import 'package:flutter/material.dart';
 
-class InfoBodyWidget extends StatelessWidget {
-  const InfoBodyWidget({super.key});
+class InfoBodyComponent extends StatelessWidget {
+  const InfoBodyComponent({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,33 +23,33 @@ class InfoBodyWidget extends StatelessWidget {
               margin: const EdgeInsets.only(top: 19, bottom: 18),
               child: Image.asset(AppImagens.explain),
             ),
-            const InfoTextGlobalWidget(
+            const InfoTextComponent(
               text: 'Explain Quantum physics',
             ),
-            const InfoTextGlobalWidget(
+            const InfoTextComponent(
               text: 'What are wormholes explain like i am 5',
             ),
             Container(
               margin: const EdgeInsets.only(top: 37, bottom: 18),
               child: Image.asset(AppImagens.writeEdit),
             ),
-            const InfoTextGlobalWidget(
+            const InfoTextComponent(
               text: 'Write a tweet about global warming',
             ),
-            const InfoTextGlobalWidget(
+            const InfoTextComponent(
               text: 'Write a poem about flower and love',
             ),
-            const InfoTextGlobalWidget(
+            const InfoTextComponent(
               text: 'Write a rap song lyrics about',
             ),
             Container(
               margin: const EdgeInsets.only(top: 37, bottom: 18),
               child: Image.asset(AppImagens.translate),
             ),
-            const InfoTextGlobalWidget(
+            const InfoTextComponent(
               text: 'How do you say “how are you” in Korean?',
             ),
-            const InfoTextGlobalWidget(
+            const InfoTextComponent(
               text: 'Write a poem about flower and love',
               margin: EdgeInsets.only(bottom: 30),
             ),

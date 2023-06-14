@@ -29,7 +29,9 @@ class _InitialScreenState extends State<InitialScreen> {
     return Scaffold(
       backgroundColor: Colors.blue,
       body: Center(
-        child: Image.asset(AppImagens.logo),
+        child: Image.asset(
+          AppImagens.logo,
+        ),
       ),
     );
   }
